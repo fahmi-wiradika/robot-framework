@@ -22,6 +22,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            chromium-browser \
+            chromium-chromedriver
+      
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
@@ -37,7 +44,12 @@ jobs:
       
       - name: Run Robot Framework tests
         run: |
-          robot --outputdir results tests/
+          robot --outputdir results \
+            --variable HEADLESS_MODE:True \
+            --variable BROWSER:chrome \
+            tests/
+        env:
+          DISPLAY: :99
       
       - name: Upload test results
         if: always()
@@ -46,12 +58,4 @@ jobs:
           name: robot-test-results
           path: results/
           retention-days: 30
-      
-      - name: Publish test report
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: Robot Framework Test Report
-          path: 'results/output.xml'
-          reporter: 'java-junit'
-          fail-on-error: false
+
