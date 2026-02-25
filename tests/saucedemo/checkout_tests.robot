@@ -15,11 +15,14 @@ Suite Setup         Run Keywords
 ...                 Product Page Should Be Displayed
 Suite Teardown      Close Test Browser
 Test Setup          Prepare Cart With One Item
+Test Teardown       Clear All Cart Items
 
 
 *** Keywords ***
 Prepare Cart With One Item
-    [Documentation]    Navigation + add one item – used as a repeatable Test Setup.
+    [Documentation]
+    ...    Navigates to the inventory page, adds one backpack, then proceeds to checkout.
+    ...    Cart state is guaranteed clean by the preceding Test Teardown.
     Navigate To URL    ${PRODUCT_URL}
     Add Sauce Labs Backpack To Cart
     Go To Cart
@@ -70,7 +73,6 @@ TC_CHK_005 – Order Total Equals Subtotal Plus Tax
 TC_CHK_006 – Multiple Items Checkout Completes Successfully
     [Documentation]    Adds two items and completes the full checkout flow.
     [Tags]    checkout    e2e    regression
-    # Override the single-item setup – add a second item then proceed.
     Navigate To URL    ${PRODUCT_URL}
     Add Sauce Labs Bike Light To Cart
     Go To Cart

@@ -14,7 +14,7 @@ Suite Setup         Run Keywords
 ...                 Product Page Should Be Displayed
 Suite Teardown      Close Test Browser
 Test Setup          Navigate To URL    ${PRODUCT_URL}
-Test Teardown       Continue Shopping From Cart
+Test Teardown       Clear All Cart Items
 
 *** Test Cases ***
 TC_CART_001 – Cart Is Empty On Fresh Session
@@ -35,4 +35,3 @@ TC_CART_002 – Added Item Appears In Cart
     Cart Should Contain Item Named    Sauce Labs Backpack
     Cart Should Contain Item Named    Sauce Labs Bike Light
     Cart Should Contain Item Named    Sauce Labs Bolt T-Shirt
-
