@@ -16,3 +16,8 @@ TC_LOGIN_001 – Standard User Can Log In Successfully
     Login As    ${STANDARD_USER}
     Login Should Succeed
     Logout
+
+TC_LOGIN_002 - Invalid User Unable To Log In
+    [Documentation]    Verifies a invalid user login attempt
+    Login As    ${INVALID_USER}
+    Login Should Fail With Message    Epic sadface: Username and password do not match any user in this service

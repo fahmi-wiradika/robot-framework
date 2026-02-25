@@ -12,6 +12,7 @@ ${STANDARD_USER}        standard_user
 ${LOCKED_USER}          locked_out_user
 ${PROBLEM_USER}         problem_user
 ${PERF_GLITCH_USER}     performance_glitch_user
+${INVALID_USER}         invalid_user
 ${VALID_PASSWORD}       secret_sauce
 
 #  URLs (relative)
