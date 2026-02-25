@@ -6,9 +6,6 @@ Project automation testing untuk website [Sauce Demo](https://www.saucedemo.com)
 
 ```
 robot-framework/
-├── .github/
-│   └── workflows/
-│       └── robot-tests.yml   # GitHub Actions CI/CD workflow
 ├── README.md                 # Dokumentasi proyek
 ├── requirements.txt          # Dependency Python
 ├── resources/                # Resource files untuk test
@@ -39,9 +36,6 @@ robot-framework/
 ```
 
 ### Penjelasan Direktori
-
-- **.github/**: Berisi konfigurasi GitHub (GitHub Actions workflow)
-  - **workflows/**: Berisi CI/CD workflow untuk automated testing
 
 - **resources/**: Berisi resource files yang digunakan oleh test cases
   - **keywords/**: Bersisi custom keywords yang mengkombinasikan library functions untuk business logic
@@ -110,30 +104,6 @@ pip install -r requirements.txt
 ```bash
 robot --version
 ```
-
-## CI/CD dengan GitHub Actions
-
-Project ini dilengkapi dengan GitHub Actions workflow yang akan otomatis menjalankan test setiap kali ada push ke branch `main`.
-
-### Workflow Configuration
-
-Workflow file terletak di `.github/workflows/robot-tests.yml` dan melakukan:
-
-1. **Checkout** kode dari repository
-2. **Setup** Python environment (Python 3.11)
-3. **Cache** pip packages untuk performa lebih baik
-4. **Install** dependencies dari `requirements.txt`
-5. **Jalankan** semua test dengan perintah `robot --outputdir results tests/`
-6. **Upload** test results sebagai artifacts (tersimpan 30 hari)
-7. **Publish** test report di GitHub Actions UI
-
-### Melihat Test Results di GitHub
-
-1. Buka repository GitHub Anda
-2. Klik tab **Actions**
-3. Pilih workflow yang ingin dilihat
-4. Scroll ke bawah untuk melihat **Artifacts** (berisi `log.html`, `report.html`, `output.xml`)
-5. Download artifacts untuk analisis lebih detail
 
 ## Menjalankan Test
 
@@ -214,18 +184,3 @@ Pastikan:
 1. Cek `results/log.html` untuk detail error
 2. Verifikasi username/password di `resources/saucedemo/variables/common_variables.robot`
 3. Pastikan koneksi internet stabil (test menggunakan live website)
-
-## Git Ignore
-
-Pastikan file berikut di-ignore di `.gitignore`:
-
-```
-.venv/
-results/
-__pycache__/
-*.pyc
-.pytest_cache/
-.DS_Store
-```
-
-Direktori `.venv/` (virtual environment) dan `results/` (test output) tidak perlu di-commit ke repository.
