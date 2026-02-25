@@ -36,7 +36,8 @@ Verify Current URL Contains
     Should Contain    ${current_url}    ${expected_url_fragment}
     ...    msg=Expected URL to contain "${expected_url_fragment}" but got "${current_url}"
 
-# Element Interaction
+#    Element Interaction
+
 Wait And Click Element
     [Arguments]    ${locator}
     [Documentation]    Waits for an element to be visible and clickable, then clicks it.
