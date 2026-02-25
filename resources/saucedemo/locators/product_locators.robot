@@ -20,3 +20,27 @@ ${LOC_ADD_SAUCE_LABS_BOLT_TSHIRT}       css:[data-test="add-to-cart-sauce-labs-b
 ${LOC_ADD_SAUCE_LABS_FLEECE_JACKET}     css:[data-test="add-to-cart-sauce-labs-fleece-jacket"]
 ${LOC_ADD_SAUCE_LABS_ONESIE}            css:[data-test="add-to-cart-sauce-labs-onesie"]
 ${LOC_ADD_TEST_ALLTHETHINGS_TSHIRT}     css:[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]
+
+# Item-specific remove buttons (by product name slug)
+${LOC_REMOVE_SAUCE_LABS_BACKPACK}       css:[data-test="remove-sauce-labs-backpack"]
+${LOC_REMOVE_SAUCE_LABS_BIKE_LIGHT}     css:[data-test="remove-sauce-labs-bike-light"]
+${LOC_REMOVE_SAUCE_LABS_BOLT_TSHIRT}    css:[data-test="remove-sauce-labs-bolt-t-shirt"]
+${LOC_REMOVE_SAUCE_LABS_FLEECE_JACKET}  css:[data-test="remove-sauce-labs-fleece-jacket"]
+${LOC_REMOVE_SAUCE_LABS_ONESIE}         css:[data-test="remove-sauce-labs-onesie"]
+${LOC_REMOVE_TEST_ALLTHETHINGS_TSHIRT}  css:[data-test="remove-test.allthethings()-t-shirt-(red)"]
+
+# Item card – scoped name and price by product title (XPath)
+${LOC_ITEM_NAME_BACKPACK}           css:[data-test="item-4-title-link"]
+${LOC_ITEM_NAME_BIKE_LIGHT}         css:[data-test="item-0-title-link"]
+${LOC_ITEM_NAME_BOLT_TSHIRT}        css:[data-test="item-1-title-link"]
+${LOC_ITEM_NAME_FLEECE_JACKET}      css:[data-test="item-5-title-link"]
+${LOC_ITEM_NAME_ONESIE}             css:[data-test="item-2-title-link"]
+${LOC_ITEM_NAME_RED_TSHIRT}         css:[data-test="item-3-title-link"]
+
+# Item card – price sibling resolved via ancestor (XPath)
+${LOC_ITEM_PRICE_BACKPACK}          css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+${LOC_ITEM_PRICE_BIKE_LIGHT}        css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+${LOC_ITEM_PRICE_BOLT_TSHIRT}       css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+${LOC_ITEM_PRICE_FLEECE_JACKET}     css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+${LOC_ITEM_PRICE_ONESIE}            css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+${LOC_ITEM_PRICE_RED_TSHIRT}        css:body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(6) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1)

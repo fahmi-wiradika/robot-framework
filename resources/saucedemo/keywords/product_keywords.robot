@@ -76,7 +76,6 @@ Cart Should Be Empty
     [Documentation]    Asserts no cart badge is visible (0 items).
     Element Should Not Be Present    ${LOC_CART_BADGE}    timeout=5s
 
-
 #  Product List Assertions
 Product Should Display N Items
     [Arguments]    ${expected_count}
@@ -85,3 +84,34 @@ Product Should Display N Items
     ${actual_count}=    Get Length    ${items}
     Should Be Equal As Integers    ${actual_count}    ${expected_count}
     ...    msg=Expected ${expected_count} inventory items but found ${actual_count}
+
+#  Product Detail Assertions
+Product Name Should Be Visible
+    [Arguments]    ${name_locator}    ${expected_name}
+    [Documentation]    Asserts a product name element is visible and its text matches the expected value.
+    Wait Until Element Is Visible    ${name_locator}    timeout=${ELEMENT_TIMEOUT}
+    ${actual_name}=    Get Text    ${name_locator}
+    Should Be Equal    ${actual_name}    ${expected_name}
+    ...    msg=Expected product name "${expected_name}" but found "${actual_name}"
+
+Product Price Should Be Correct
+    [Arguments]    ${price_locator}    ${expected_price}
+    [Documentation]    Asserts a product's displayed price matches the expected value.
+    Wait Until Element Is Visible    ${price_locator}    timeout=${ELEMENT_TIMEOUT}
+    ${actual_price}=    Get Text    ${price_locator}
+    Should Be Equal    ${actual_price}    ${expected_price}
+    ...    msg=Expected price "${expected_price}" but found "${actual_price}"
+
+Add To Cart Button Should Be Available
+    [Arguments]    ${add_button_locator}
+    [Documentation]    Asserts the Add-to-Cart button is visible and enabled (ready to interact).
+    Wait Until Element Is Visible    ${add_button_locator}    timeout=${ELEMENT_TIMEOUT}
+    Element Should Be Enabled    ${add_button_locator}
+
+Verify Product Card
+    [Arguments]    ${name_locator}    ${expected_name}    ${price_locator}    ${expected_price}    ${add_button_locator}
+    [Documentation]
+    ...    Compound assertion: validates name, price, and Add-to-Cart availability for a single product card.
+    Product Name Should Be Visible        ${name_locator}        ${expected_name}
+    Product Price Should Be Correct       ${price_locator}       ${expected_price}
+    Add To Cart Button Should Be Available    ${add_button_locator}
