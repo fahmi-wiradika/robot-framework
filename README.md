@@ -143,14 +143,11 @@ robot --include smoke --outputdir results tests/
 # Jalankan test dengan tag 'regression'
 robot --include regression --outputdir results tests/
 
+# Jalankan test dengan tag 'e2e'
+robot --include e2e --outputdir results tests/
+
 # Exclude test dengan tag 'skip'
 robot --exclude skip --outputdir results tests/
-```
-
-### 4. Jalankan Test Secara Parallel (Menggunakan Pabot)
-
-```bash
-pabot --processes auto --outputdir results tests/
 ```
 
 ### 5. Melihat Test Report
@@ -168,7 +165,7 @@ xdg-open results/report.html # Linux
 - **robotframework**: Framework untuk automation testing
 - **robotframework-seleniumlibrary**: Library untuk web automation menggunakan Selenium
 - **webdriver-manager**: Automatic WebDriver management
-- **robotframework-pabot**: Plugin untuk parallel test execution
+- **robotframework-pabot**: Plugin untuk parallel test execution (under development)
 
 ## Troubleshooting
 
