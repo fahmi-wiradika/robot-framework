@@ -29,7 +29,7 @@ Login As Standard User
 #  Login Assertions
 Login Should Succeed
     [Documentation]    Asserts a successful login by verifying the inventory page is displayed.
-    Wait Until Element Is Visible    ${LOC_INVENTORY_CONTAINER}    timeout=${ELEMENT_TIMEOUT}
+    Wait Until Element Is Visible    ${LOC_PRODUCT_CONTAINER}    timeout=${ELEMENT_TIMEOUT}
     ...    error=Login failed – inventory page not loaded within ${ELEMENT_TIMEOUT}.
     Verify Current URL Contains    /inventory.html
 

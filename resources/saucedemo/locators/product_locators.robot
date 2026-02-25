@@ -1,7 +1,7 @@
 *** Variables ***
 #  Product Page Locators
-${LOC_INVENTORY_CONTAINER}          id:inventory_container
-${LOC_INVENTORY_ITEMS}              css:.inventory_item
+${LOC_PRODUCT_CONTAINER}          id:inventory_container
+${LOC_PRODUCT_ITEMS}              css:.inventory_item
 ${LOC_PRODUCT_SORT_DROPDOWN}        css:[data-test="product-sort-container"]
 ${LOC_INVENTORY_ITEM_NAME}          css:.inventory_item_name
 ${LOC_INVENTORY_ITEM_PRICE}         css:.inventory_item_price

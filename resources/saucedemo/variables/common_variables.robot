@@ -23,9 +23,10 @@ ${CHECKOUT_STEP1_URL}   ${BASE_URL}/checkout-step-one.html
 ${CHECKOUT_STEP2_URL}   ${BASE_URL}/checkout-step-two.html
 ${CHECKOUT_COMPLETE_URL}    ${BASE_URL}/checkout-complete.html
 
-# ──────────────────────────────────────────────
-#  Test Data
-# ──────────────────────────────────────────────
+#  Checkout Data
 ${FIRST_NAME}           Fahmi
 ${LAST_NAME}            Wiradika
 ${POSTAL_CODE}          11480
+
+# Product Data
+

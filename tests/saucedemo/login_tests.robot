@@ -2,9 +2,9 @@
 Documentation       Test suite for the SauceDemo login page.
 ...                 Covers: successful login, failure scenarios, and logout.
 
-Resource            ../../resources/keywords/common_keywords.robot
-Resource            ../../resources/keywords/login_keywords.robot
-Resource            ../../resources/variables/common_variables.robot
+Resource            ../../resources/saucedemo/keywords/common_keywords.robot
+Resource            ../../resources/saucedemo/keywords/login_keywords.robot
+Resource            ../../resources/saucedemo/variables/common_variables.robot
 
 Suite Setup         Open Browser To Login Page
 Suite Teardown      Close Test Browser
