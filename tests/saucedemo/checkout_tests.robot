@@ -15,7 +15,7 @@ Suite Setup         Run Keywords
 ...                 Product Page Should Be Displayed
 Suite Teardown      Close Test Browser
 Test Setup          Prepare Cart With One Item
-Test Teardown       Clear All Cart Items    # Ensures cart is empty before the next test's Setup runs
+Test Teardown       Clear All Cart Items
 
 
 *** Keywords ***
