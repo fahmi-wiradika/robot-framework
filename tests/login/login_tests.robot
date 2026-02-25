@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation       Test suite for the SauceDemo login page.
+...                 Covers: successful login, failure scenarios, and logout.
+
+Resource            ../../resources/keywords/common_keywords.robot
+Resource            ../../resources/keywords/login_keywords.robot
+Resource            ../../resources/variables/common_variables.robot
+
+Suite Setup         Open Browser To Login Page
+Suite Teardown      Close Test Browser
+Test Setup          Navigate To URL    ${LOGIN_URL}
+
+*** Test Cases ***
+TC_LOGIN_001 – Standard User Can Log In Successfully
+    [Documentation]    Verifies a standard user can authenticate and reach the inventory page.
+    Login As    ${STANDARD_USER}
+    Login Should Succeed
+    Logout
