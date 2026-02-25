@@ -115,3 +115,9 @@ Verify Product Card
     Product Name Should Be Visible        ${name_locator}        ${expected_name}
     Product Price Should Be Correct       ${price_locator}       ${expected_price}
     Add To Cart Button Should Be Available    ${add_button_locator}
+
+#  Navigation to Cart
+Go To Cart
+    [Documentation]    Clicks the shopping cart icon and waits for the cart page.
+    Wait And Click Element    ${LOC_CART_ICON}
+    Verify Current URL Contains    /cart.html

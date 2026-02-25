@@ -17,7 +17,7 @@ ${VALID_PASSWORD}       secret_sauce
 
 #  URLs (relative)
 ${LOGIN_URL}            ${BASE_URL}/
-${INVENTORY_URL}        ${BASE_URL}/inventory.html
+${PRODUCT_URL}        ${BASE_URL}/inventory.html
 ${CART_URL}             ${BASE_URL}/cart.html
 ${CHECKOUT_STEP1_URL}   ${BASE_URL}/checkout-step-one.html
 ${CHECKOUT_STEP2_URL}   ${BASE_URL}/checkout-step-two.html
