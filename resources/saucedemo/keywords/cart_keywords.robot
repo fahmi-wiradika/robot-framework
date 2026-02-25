@@ -21,15 +21,19 @@ Cart Should Contain N Items
 
 Cart Should Contain Item Named
     [Arguments]    ${expected_name}
-    [Documentation]    Asserts an item with the given name is in the cart.
+    [Documentation]
+    ...    Asserts an item with the given name is in the cart.
+    ...    Uses direct IF string comparison instead of Run Keyword And Return Status
+    ...    so no [ FAIL ] noise is logged when iterating past non-matching names.
     Wait Until Element Is Visible    ${LOC_CART_ITEMS}    timeout=${ELEMENT_TIMEOUT}
     ${names}=    Get WebElements    ${LOC_CART_ITEM_NAME}
     ${found}=    Set Variable    ${FALSE}
     FOR    ${el}    IN    @{names}
         ${name}=    Get Text    ${el}
-        ${found}=    Run Keyword And Return Status
-        ...    Should Be Equal    ${name}    ${expected_name}
-        Exit For Loop If    ${found}
+        IF    '${name}' == '${expected_name}'
+            ${found}=    Set Variable    ${TRUE}
+            Exit For Loop
+        END
     END
     Should Be True    ${found}
     ...    msg=Item "${expected_name}" not found in the cart.
@@ -48,3 +52,21 @@ Continue Shopping From Cart
     [Documentation]    Clicks 'Continue Shopping' to return to the inventory page.
     Wait And Click Element    ${LOC_CART_CONTINUE_SHOPPING}
     Verify Current URL Contains    /inventory.html
+
+Clear All Cart Items
+    [Documentation]
+    ...    Navigates to the cart page and removes every line item found.
+    ...    Uses Get Element Count instead of Run Keyword And Return Status
+    ...    so no [ FAIL ] noise is written to the log when the cart is already empty.
+    ...    Always returns to the inventory page on completion.
+    Go To    ${CART_URL}
+    Wait Until Page Is Loaded
+    ${count}=    Get Element Count    ${LOC_REMOVE_FROM_CART_BTN}
+    IF    ${count} > 0
+        ${buttons}=    Get WebElements    ${LOC_REMOVE_FROM_CART_BTN}
+        FOR    ${btn}    IN    @{buttons}
+            Click Element    ${btn}
+        END
+    END
+    Go To    ${PRODUCT_URL}
+    Wait Until Page Is Loaded

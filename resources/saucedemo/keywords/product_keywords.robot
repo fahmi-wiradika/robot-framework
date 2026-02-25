@@ -52,10 +52,12 @@ Sort Products By
 
 #  Cart Badge Assertions
 Get Cart Item Count
-    [Documentation]    Returns the current cart badge count. Returns 0 if badge is absent.
-    ${badge_visible}=    Run Keyword And Return Status
-    ...    Element Should Be Visible    ${LOC_CART_BADGE}
-    Return From Keyword If    not ${badge_visible}    0
+    [Documentation]
+    ...    Returns the current cart badge count. Returns 0 if badge is absent.
+    ...    Uses Get Element Count to avoid logging [ FAIL ] noise when the badge
+    ...    is not yet present (e.g. on a fresh page before any item is added).
+    ${badge_count}=    Get Element Count    ${LOC_CART_BADGE}
+    Return From Keyword If    ${badge_count} == 0    0
     ${count_text}=    Get Text    ${LOC_CART_BADGE}
     ${count}=    Convert To Integer    ${count_text}
     RETURN    ${count}
