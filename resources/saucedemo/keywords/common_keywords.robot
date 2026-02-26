@@ -8,7 +8,7 @@ Resource    ../variables/common_variables.robot
 Open Browser To Login Page
     [Documentation]    Opens Chrome and navigates to the SauceDemo login page.
     Open Browser    ${LOGIN_URL}    ${BROWSER}
-    ...    options=add_argument("--no-sandbox");add_argument("--disable-dev-shm-usage");add_argument("--incognito")
+    ...    options=add_argument("--no-sandbox");add_argument("--disable-dev-shm-usage");add_argument("--incognito");add_argument("--headless=new")
     Maximize Browser Window
     Set Selenium Page Load Timeout    ${PAGE_LOAD_TIMEOUT}
     Wait Until Page Is Loaded

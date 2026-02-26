@@ -1,0 +1,111 @@
+name: Robot Framework Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # ──────────────────────────────────────────────
+  #  JOB 1 – Run Robot Framework Tests
+  # ──────────────────────────────────────────────
+  test:
+    name: Run Robot Framework Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Chrome & ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Run Robot Framework Tests
+        run: |
+          robot \
+            --outputdir results \
+            --loglevel INFO \
+            tests/
+        continue-on-error: true   # upload results even on test failure
+
+      - name: Upload Test Results as Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: robot-results
+          path: results/
+          retention-days: 30
+
+  # ──────────────────────────────────────────────
+  #  JOB 2 – Publish Report to GitHub Pages
+  # ──────────────────────────────────────────────
+  deploy-report:
+    name: Publish Report to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()   # run even when tests fail so the report is always published
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download Test Results Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: robot-results
+          path: results/
+
+      - name: Create Index Page
+        run: |
+          cat > results/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="refresh" content="0; url=report.html" />
+            <title>Redirecting to Robot Framework Report…</title>
+          </head>
+          <body>
+            <p>Redirecting to <a href="report.html">report.html</a>…</p>
+          </body>
+          </html>
+          EOF
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: results/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
