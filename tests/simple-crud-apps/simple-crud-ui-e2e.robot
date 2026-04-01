@@ -7,11 +7,11 @@ Resource            ../../resources/simple-crud-apps/keywords/common_keywords.ro
 Resource            ../../resources/simple-crud-apps/keywords/simple_crud_keywords.robot
 Resource            ../../resources/simple-crud-apps/variables/common_variables.robot
 
-Suite Setup         Open Browser To Login Page
+Suite Setup         Open Browser To Simple CRUD App
 Suite Teardown      Close Test Browser
 
 *** Test Cases ***
-TC_CRUD_001 – Add Update And Delete Product Successfully
+TC_CRUD_001 - Navigate To App And Verify Product List Loads
     [Documentation]
     ...    Navigates to the CRUD app, adds a product, captures its ID from the notification,
     ...    updates the same product using that ID, deletes it using the same ID,
@@ -19,9 +19,14 @@ TC_CRUD_001 – Add Update And Delete Product Successfully
     [Tags]    crud    smoke    regression    e2e
     Open Simple CRUD App
 
+TC_CRUD_002 - Add New Product And Verify It Appears In List
+    [Documentation]
+    ...    Adds a new product to the CRUD app and verifies it appears in the product list.
+    [Tags]    crud    smoke    regression    e2e
     Add Product    ${PROD_NAME}    ${PROD_PRICE}    ${PROD_QUANTITY}
     ${product_id}=    Get Product Id From Notification
     Log    Product added with ID: ${product_id}
+    Set Suite Variable    ${PRODUCT_ID}    ${product_id}
     Wait Notification To Disappear
     Assert Product Details
     ...    ${product_id}
@@ -30,19 +35,27 @@ TC_CRUD_001 – Add Update And Delete Product Successfully
     ...    ${PROD_PRICE}
     ...    ${PROD_QUANTITY}
 
+TC_CRUD_003 - Update Product And Verify Changes
+    [Documentation]
+    ...    Updates an existing product in the CRUD app and verifies the changes are reflected.
+    [Tags]    crud    regression    e2e
     Update Product
-    ...    ${product_id}
+    ...    ${PRODUCT_ID}
     ...    ${UPDATED_PROD_NAME}
     ...    ${UPDATED_PROD_PRICE}
     ...    ${UPDATED_PROD_QUANTITY}
     Wait Notification To Disappear
     Assert Product Details
-    ...    ${product_id}
-    ...    ${product_id}
+    ...    ${PRODUCT_ID}
+    ...    ${PRODUCT_ID}
     ...    ${UPDATED_PROD_NAME}
     ...    ${UPDATED_PROD_PRICE}
     ...    ${UPDATED_PROD_QUANTITY}
 
-    Delete Product    ${product_id}
+TC_CRUD_004 - Delete Product And Verify It Is Removed
+    [Documentation]
+    ...    Deletes a product from the CRUD app and verifies it is no longer present.
+    [Tags]    crud    regression    e2e
+    Delete Product    ${PRODUCT_ID}
     Wait Notification To Disappear
-    Product Should Not Be Present    ${product_id}
+    Product Should Not Be Present    ${PRODUCT_ID}
