@@ -1,4 +1,5 @@
 robotframework
 robotframework-seleniumlibrary
+robotframework-requests
 webdriver-manager
 robotframework-pabot
