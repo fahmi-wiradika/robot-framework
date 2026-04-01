@@ -22,7 +22,7 @@ TC_CRUD_001 – Add Update And Delete Product Successfully
     Add Product    ${PROD_NAME}    ${PROD_PRICE}    ${PROD_QUANTITY}
     ${product_id}=    Get Product Id From Notification
     Log    Product added with ID: ${product_id}
-    # Wait Notification To Disappear
+    Wait Notification To Disappear
     Assert Product Details
     ...    ${product_id}
     ...    ${product_id}
@@ -35,7 +35,7 @@ TC_CRUD_001 – Add Update And Delete Product Successfully
     ...    ${UPDATED_PROD_NAME}
     ...    ${UPDATED_PROD_PRICE}
     ...    ${UPDATED_PROD_QUANTITY}
-    # Wait Notification To Disappear
+    Wait Notification To Disappear
     Assert Product Details
     ...    ${product_id}
     ...    ${product_id}
