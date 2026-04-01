@@ -5,15 +5,13 @@ Resource    ../variables/common_variables.robot
 
 *** Keywords ***
 # Browser Lifecycle
-Open Browser To Login Page
+Open Browser To Simple CRUD App
     [Documentation]    Opens Chrome and navigates to the SauceDemo login page.
     Open Browser    ${SIMPLE_CRUD_APP_URL}    ${BROWSER}
     ...    options=add_argument("--no-sandbox");add_argument("--disable-dev-shm-usage");add_argument("--incognito");add_argument("--headless=new")
     Maximize Browser Window
     Set Selenium Page Load Timeout    ${PAGE_LOAD_TIMEOUT}
     Wait Until Page Is Loaded
-
-# add_argument("--headless=new")
 
 Close Test Browser
     [Documentation]    Captures a screenshot on failure then closes the browser.
